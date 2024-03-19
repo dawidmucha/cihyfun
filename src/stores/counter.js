@@ -13,7 +13,7 @@ import axios from 'axios'
 // })
 
 export const useXkcdProgressStore = defineStore('xkcdProgress', () => {
-  const latestComicNumber = ref(1) // semanticly should be perhaps latestComicNumber but whatever
+  const latestComicNumber = ref(1) 
   const comic = ref({})
 
   async function getLatestComicNumber() {
