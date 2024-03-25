@@ -63,22 +63,14 @@ const onComicChange = async () => {
         xkcd progress view {{ store.comic.num || "?" }}/{{ store.latestComicNumber }} \\ local storage length: {{ lsArrayLength }}
         
         <img :src="store.comic.img" alt="image of the current comic"/>
-        <!-- {{ store.comic }} -->
 
-        <input type='range' min='1' :max='store.latestComicNumber' v-model="store.comic.num" @change="onComicChange()" />
-
+        
         <div>
+          <input type='range' min='1' :max='store.latestComicNumber' v-model="store.comic.num" @change="onComicChange()" />
           <label for="isSeen">Mask as seen: </label>
           <input type="checkbox" id='isSeen' name='isSeen' v-model="isSeen" @change="(e) => markAsSeen(e)" /> <span style="opacity: 0.5">(will mark as seen after 15s)</span>  
         </div>
-
-        <div>
-          <div>Marked as seen: </div>
-          <span v-for="(progressItem, i) in progress" :key="i">
-            <span v-if="!!progressItem === true">{{ i }}, </span>
-          </span>
-        </div>
       </div>
-      <ProgressVisualizer />
+      <!-- <ProgressVisualizer /> -->
     </main>
 </template>

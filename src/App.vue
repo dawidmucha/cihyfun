@@ -4,9 +4,9 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div class="appContainer">
-    <header>
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
+    <header class="sidebar">
+        <nav class="links">
+          <RouterLink to="/" class="mainLink"><h1>cihy.fun</h1></RouterLink>
           <RouterLink to="/xkcdProgress">xkcd progress</RouterLink>
         </nav>
     </header>
@@ -18,17 +18,32 @@ import { RouterLink, RouterView } from 'vue-router'
 <style scoped>
 .appContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
-  height: 90vh;
-
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
 }
 
-/* header, .routerView {
-  background-color: blue;
-} */
+.sidebar {
+  background-color: #222222;
+  text-align: center;
+  width: 15%;
+  min-width: 150px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainLink {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 
 .routerView {
-  flex-grow: 2;
+  background-color: #333333;
+  width: 85%;
 }
 </style>
