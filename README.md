@@ -1,3 +1,19 @@
+# to do
+
+- [ ] When clicking at a range input the `store.comic.run` value seems jumpy. It seem to work when increasing value, but decreasing makes it go back, unless the range button is held and dragged "manually". Also it seem unoptimised (dragging shouldnt fetch every comic inbeteen [delay?])
+- [ ] comic horizontal limitations ()
+- [ ] << < > >> buttons working
+- [ ] a go-to input for choosing a specific page 
+- [ ] limitations on the sized of some wacky comics (scroll bars?)
+  - [ ] research which comics are long, wide, big, otherwise wacky
+- [ ] mark as seen should actually work (right now it's doing a good job at pretending)
+- [ ] make progress field presentable
+- [ ] like 100% make sure when visiting on a new day a new slot is added seamlessly
+
+# done :)
+
+<!--
+
 # cihyfun
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -39,3 +55,4 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+-->

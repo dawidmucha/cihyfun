@@ -15,7 +15,7 @@ import { RouterLink, RouterView } from 'vue-router'
   </div>
 </template>
 
-<style scoped>
+<style>
 .appContainer {
   display: flex;
   flex-direction: row;
@@ -45,5 +45,13 @@ import { RouterLink, RouterView } from 'vue-router'
 .routerView {
   background-color: #333333;
   width: 85%;
+}
+
+h1 {
+  color: grey;
+}
+
+h2 {
+  color: darkgreen;
 }
 </style>
