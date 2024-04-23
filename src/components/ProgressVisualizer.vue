@@ -1,11 +1,15 @@
 <script setup>
-const progress = localStorage.getItem("xkcdTracker").split(',')
+let progress
+if(localStorage.getItem("xkcdTracker")) {
+  progress = localStorage.getItem("xkcdTracker").split(',').shift()
+} else {
+  progress = []
+}
 </script>
 
 <template>
-  heeekki
   <div class="progressBoard">
-    <div v-for="(progressItem, i) of progress" :key="progressItem">
+    <div class="progressBoardItemContainer" @click.prevent="$emit('updateComic', i+1)" v-for="(progressItem, i) of progress" :key="progressItem">
       <span v-if="progressItem === ''" class="progress-item progress-item-unseen">{{ i+1 }}</span>
       <span v-else class="progress-item progress-item-seen">{{ i+1 }}</span>
     </div>
@@ -15,16 +19,18 @@ const progress = localStorage.getItem("xkcdTracker").split(',')
 <style scoped>
 .progressBoard {
   font-size: 7px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(10, 1.7rem);
 }
 
 .progress-item {
+  text-align: center;
+  display: block;
+  width: 100%;
   background-color: grey;
-  width: 15px;
-  height: 15px;
-  padding: 0.2rem;
+  padding: 0.1rem;
+  margin: 0px;
+  font-size: 0.7rem;
 }
 
 .progress-item-seen {
