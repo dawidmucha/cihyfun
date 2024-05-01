@@ -10,9 +10,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/xkcdProgress',
-      name: 'xkcdProgress',
-      component: () => import('../views/XkcdProgressView.vue')
+      path: '/xkcdTracker',
+      name: 'xkcdTracker',
+      component: () => import('../views/XkcdTrackerView.vue')
     }
   ]
 })

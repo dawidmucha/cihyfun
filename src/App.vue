@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <header class="sidebar">
         <nav class="links">
           <RouterLink to="/" class="mainLink"><h1>cihy.fun</h1></RouterLink>
-          <RouterLink to="/xkcdProgress">xkcd progress</RouterLink>
+          <RouterLink to="/xkcdTracker">xkcd tracker</RouterLink>
         </nav>
     </header>
   
