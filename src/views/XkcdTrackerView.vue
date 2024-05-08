@@ -2,20 +2,20 @@
 import XkcdMap from '@/components/xkcd/xkcdMap.vue'
 import XkcdMain from '@/components/xkcd/xkcdMain.vue'
 
-import { useXkcdStore } from '@/stores/xkcd'
+// import { useXkcdStore } from '@/stores/xkcdStore'
 
-const store = useXkcdStore() // eslint-disable-line
+// const store = useXkcdStore() // eslint-disable-line
 </script>
 
 <template>
-    <main>
+    <main id="xkcdTrackerView">
       <XkcdMap id="map" />
       <XkcdMain id="main" />
     </main>
 </template>
 
 <style scoped>
-main {
+#xkcdTrackerView {
   display: flex;
   flex-direction: row;
 }

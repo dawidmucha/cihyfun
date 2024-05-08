@@ -18,6 +18,14 @@ export const useXkcdStore = defineStore('xkcd', () => {
   // from localStorage
   const numMaxLs = ref(0)
 
+  /* 
+    i think THINK is gonna go like this:
+    if ?comic=latest leads to 500
+    numMax will be 500 to help with input range being set to 500
+    numMaxLs will be set to 501, because the length of a localStorage array will be
+     one bigger than numMax, because xkcd[0] will always be set to 0 (so array element === comic number)
+  */
+
   // settings
   const size = ref('large')
   const filter = ref('both')
@@ -56,8 +64,8 @@ export const useXkcdStore = defineStore('xkcd', () => {
     await getLatestComic()
 
     if(localStorage.getItem('xkcd') === null) {
-      const empty = new Array(numMax.value)
-      empty.unshift(null)
+      const empty = new Array(numMax.value).fill(0)
+      empty.unshift(0)
 
       localStorage.setItem('xkcd', empty.toString())
     }
@@ -73,5 +81,8 @@ export const useXkcdStore = defineStore('xkcd', () => {
     }
   }
 
-  return { getLatestComic, getComic, setSettingsCurrent, settingsChange, updateLocalStorage }
+  return { 
+    getLatestComic, getComic, setSettingsCurrent, settingsChange, updateLocalStorage, 
+    day, month, year, title, img, alt, num, numMax, numMaxLs, size, filter, settingsCurrent
+  }
 })
