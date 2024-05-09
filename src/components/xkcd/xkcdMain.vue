@@ -24,7 +24,6 @@ onMounted(() => {
         <li>alt: {{ store.alt }}</li>
         <li>num: {{ store.num }}</li>
         <li>numMax: {{ store.numMax }}</li>
-        <li>numMaxLs: {{ store.numMaxLs }}</li>
         <li>size: {{ store.size }}</li>
         <li>filter: {{ store.filter }}</li>
         <li>settingsCurrent: {{ store.settingsCurrent }}</li>
