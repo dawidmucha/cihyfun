@@ -27,6 +27,7 @@ onMounted(() => {
         <li>size: {{ store.size }}</li>
         <li>filter: {{ store.filter }}</li>
         <li>settingsCurrent: {{ store.settingsCurrent }}</li>
+        <li @click="store.markAsSeen(store.num)">mark as seen</li>
       </ul>
     </div>
   </main>
