@@ -1,9 +1,15 @@
 <script setup>
 import { useXkcdStore } from '@/stores/xkcdStore'
+import { ref } from 'vue'
 
 const store = useXkcdStore()
 
-const ls = localStorage.getItem('xkcd').split(',')
+const ls = ref(localStorage.getItem('xkcd').split(','))
+
+store.$subscribe((mutation, state) => {
+  console.log('subscibe change', mutation, state)
+  ls.value = localStorage.getItem('xkcd').split(',')
+})
 </script>
 
 <template>

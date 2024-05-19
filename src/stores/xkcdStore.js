@@ -20,6 +20,9 @@ export const useXkcdStore = defineStore('xkcd', () => {
   const size = ref('large')
   const filter = ref('both')
 
+  // for markAsSeen subscribe functionality
+  const flag = ref(0)
+
   async function getLatestComic() {
     let res = await axios("https://xkcd.vercel.app/?comic=latest")
     
@@ -79,11 +82,12 @@ export const useXkcdStore = defineStore('xkcd', () => {
     const ls = localStorage.getItem('xkcd').split(',')
     ls[comicNumber] = 1
     localStorage.setItem('xkcd', ls.toString())
+    flag.value += 1
   }
 
   return { 
     getLatestComic, getComic, setSettingsCurrent, settingsChange, updateLocalStorage, markAsSeen,
-    day, month, year, title, img, alt, num, numMax, size, filter, settingsCurrent
+    day, month, year, title, img, alt, num, numMax, size, filter, settingsCurrent, flag
   }
 })
    
