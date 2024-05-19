@@ -1,10 +1,6 @@
 <script setup>
 import XkcdMap from '@/components/xkcd/xkcdMap.vue'
 import XkcdMain from '@/components/xkcd/xkcdMain.vue'
-
-// import { useXkcdStore } from '@/stores/xkcdStore'
-
-// const store = useXkcdStore() // eslint-disable-line
 </script>
 
 <template>

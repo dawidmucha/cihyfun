@@ -6,8 +6,7 @@ const store = useXkcdStore()
 
 const ls = ref(localStorage.getItem('xkcd').split(','))
 
-store.$subscribe((mutation, state) => {
-  console.log('subscibe change', mutation, state)
+store.$subscribe(() => {
   ls.value = localStorage.getItem('xkcd').split(',')
 })
 </script>
