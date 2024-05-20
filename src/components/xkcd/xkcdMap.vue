@@ -1,4 +1,5 @@
 <script setup>
+import XkcdSettings from '@/components/xkcd/xkcdSettings.vue'
 import { useXkcdStore } from '@/stores/xkcdStore'
 import { ref } from 'vue'
 
@@ -14,11 +15,14 @@ store.$subscribe(() => {
 <template>
   <div>
     <div id="xkcdMap">
+      <XkcdSettings />
       xkcdMap
       <ol>
-        <li v-for="comicNumber in store.numMax" :key="comicNumber">
-          <div @click="store.getComic(comicNumber)">{{ comicNumber }} {{ ls[comicNumber] === "0" ? "" : " - Seen" }}</div>
-        </li>
+        <span v-for="comicNumber in store.numMax" :key="comicNumber">
+          <li v-if="ls[comicNumber] === '0'"> <!-- only unseen -->
+            <div @click="store.getComic(comicNumber)">{{ comicNumber }} {{ ls[comicNumber] === "0" ? "" : " - Seen" }}</div>
+          </li>
+        </span>
       </ol>
     </div>
   </div>
