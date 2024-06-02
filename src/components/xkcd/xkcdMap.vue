@@ -8,7 +8,10 @@ const store = useXkcdStore()
 const selectedSize = ref(0)
 const selectedFilter = ref(0)
 
-const ls = ref(localStorage.getItem('xkcd').split(',').map(Number))
+const ls = ref([])
+if(localStorage.getItem('xkcd') != null) {
+  ls.value = localStorage.getItem('xkcd').split(',').map(Number)
+}
 
 store.$subscribe(() => {
   ls.value = localStorage.getItem('xkcd').split(',').map(Number)
@@ -39,11 +42,12 @@ const isComicShown = (setting, comic) => {
     <div id="xkcdMap">
       <XkcdSettings :selectedSizeProp="selectedSize" :selectedFilterProp="selectedFilter" />
       xkcdMap {{ selectedSize }} {{ selectedFilter }}
-      <ol>
+      <ul id="xkcdMapList">
         <span v-for="comicNumber in store.numMax" :key="comicNumber">
           <li v-if="isComicShown(selectedFilter, ls[comicNumber])"> 
             <!-- <div @click="store.getComic(comicNumber)">{{ comicNumber }} {{ ls[comicNumber] === 0 ? "" : " - Seen" }}</div>  -->
-            <div :class="{ 
+            <div @click="store.getComic(comicNumber)" :class="{ 
+              mapTile: true,
               mapTileSeen: ls[comicNumber], 
               mapTileUnseen: !ls[comicNumber],
               mapTileMinimal: (selectedSize === 0),
@@ -52,7 +56,7 @@ const isComicShown = (setting, comic) => {
             }">{{ comicNumber }}</div>
           </li>
         </span>
-      </ol>
+      </ul>
     </div>
   </div>
 </template>
@@ -63,19 +67,38 @@ const isComicShown = (setting, comic) => {
   overflow-y: scroll;
 }
 
-.mapTileMinimal {
-  width: 5px;
-  height: 5px;
+#xkcdMapList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.mapTileSmall {
-  width: 22px;
-  height: 22px;
+.mapTile {
+  color: pink;
 }
 
 .mapTileLarge {
   width: 50px;
   height: 50px;
+  
+  margin: 8px;
+}
+
+.mapTileSmall {
+  width: 22px;
+  height: 22px;
+
+  margin: 2px;
+}
+
+.mapTileMinimal {
+  width: 8px;
+  height: 8px;
+  font-size: 0;
+
+  margin: 0px 1px 1px 0px;
 }
 
 .mapTileSeen {
