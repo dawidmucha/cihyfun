@@ -5,8 +5,11 @@ import { ref } from 'vue'
 
 const store = useXkcdStore()
 
-const selectedSize = ref(0)
-const selectedFilter = ref(0)
+const selectedSize = ref('small')
+const selectedFilter = ref('unseen')
+
+// if(localStorage.getItem('size') != null) selectedSize.value = localStorage.getItem('size')
+// if(localStorage.getItem('filter') != null) selectedFilter.value = localStorage.getItem('filter')
 
 const ls = ref([])
 if(localStorage.getItem('xkcd') != null) {
@@ -17,23 +20,23 @@ store.$subscribe(() => {
   ls.value = localStorage.getItem('xkcd').split(',').map(Number)
 
   switch(store.size) {
-    case "minimal": selectedSize.value = 0; break
-    case "small": selectedSize.value = 1; break
-    case "large": selectedSize.value = 2; break
+    case "minimal": selectedSize.value = "minimal"; break
+    case "small": selectedSize.value = "small"; break
+    case "large": selectedSize.value = "large"; break
     default: console.error('store.size invalid value')
   }
 
   switch(store.filter) {
-    case "unseen": selectedFilter.value = 0; break
-    case "seen": selectedFilter.value = 1; break
-    case "both": selectedFilter.value = 2; break
+    case "unseen": selectedFilter.value = "unseen"; break
+    case "seen": selectedFilter.value = "seen"; break
+    case "both": selectedFilter.value = "both"; break
     default: console.error('store.filter invalid value')
   }
 })
 
 const isComicShown = (setting, comic) => {
-  if(setting === 2) return true
-  else return (setting === comic)
+  if(setting === "both") return true
+  else return ((setting === "unseen" && comic === 0) || (setting === "seen" && comic === 1)) // if unseen, comic === 0 | if seen, comic === 1
 }
 </script>
 
@@ -50,9 +53,9 @@ const isComicShown = (setting, comic) => {
               mapTile: true,
               mapTileSeen: ls[comicNumber], 
               mapTileUnseen: !ls[comicNumber],
-              mapTileMinimal: (selectedSize === 0),
-              mapTileSmall: (selectedSize === 1),
-              mapTileLarge: (selectedSize === 2),
+              mapTileMinimal: !!(selectedSize === 'minimal'),
+              mapTileSmall: !!(selectedSize === 'small'),
+              mapTileLarge: !!(selectedSize === 'large'),
             }">{{ comicNumber }}</div>
           </li>
         </span>

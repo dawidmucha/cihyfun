@@ -17,15 +17,15 @@ const store = useXkcdStore()
     </div>
     <div v-show="store.settingsCurrent === 'size'">
       <button @click="store.setSettingsCurrent('')">&lt;</button>
-      <button @click="store.settingsChange('size', 'large')" :disabled="selectedSizeProp[0]">Large</button>
-      <button @click="store.settingsChange('size', 'small')" :disabled="selectedSizeProp[1]">Small</button>
-      <button @click="store.settingsChange('size', 'minimal')" :disabled="selectedSizeProp[2]">Minimal</button>
+      <button @click="store.settingsChange('size', 'large')" :disabled="selectedSizeProp == 'large'">Large</button>
+      <button @click="store.settingsChange('size', 'small')" :disabled="selectedSizeProp == 'small'">Small</button>
+      <button @click="store.settingsChange('size', 'minimal')" :disabled="selectedSizeProp == 'minimal'">Minimal</button>
     </div>
     <div v-show="store.settingsCurrent === 'filter'">
       <button @click="store.setSettingsCurrent('')">&lt;</button>
-      <button @click="store.settingsChange('filter', 'seen')" :disabled="selectedFilterProp[0]">Seen</button>
-      <button @click="store.settingsChange('filter', 'unseen')" :disabled="selectedFilterProp[1]">Unseen</button>
-      <button @click="store.settingsChange('filter', 'both')" :disabled="selectedFilterProp[2]">Both</button>
+      <button @click="store.settingsChange('filter', 'seen')" :disabled="selectedFilterProp == 'seen'">Seen</button>
+      <button @click="store.settingsChange('filter', 'unseen')" :disabled="selectedFilterProp == 'unseen'">Unseen</button>
+      <button @click="store.settingsChange('filter', 'both')" :disabled="selectedFilterProp == 'both'">Both</button>
     </div>
   </div>
 </template>

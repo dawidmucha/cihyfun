@@ -17,8 +17,8 @@ export const useXkcdStore = defineStore('xkcd', () => {
 
   // settings
   const settingsCurrent = ref('')
-  const size = ref('large')
-  const filter = ref('both')
+  const size = ref('')
+  const filter = ref('')
 
   // for markAsSeen subscribe functionality
   const flag = ref(0)
@@ -50,10 +50,19 @@ export const useXkcdStore = defineStore('xkcd', () => {
   function settingsChange(setting, name) {
     if(setting === "size") size.value = name
     else if(setting === "filter") filter.value = name
+
+    localStorage.setItem(`${setting}`, name)
+  }
+
+  function getSettingsFromLocalstorage() {
+    if(localStorage.getItem('filter') === undefined || localStorage.getItem('size') === undefined) return
+    size.value = localStorage.getItem('size')
+    filter.value = localStorage.getItem('filter')
   }
 
   async function updateLocalStorage() {
     await getLatestComic()
+    getSettingsFromLocalstorage()
 
     //create a localStorage item if visiting a website for the first time (or localStorage was cleared)
     if(localStorage.getItem('xkcd') === null) {
@@ -86,7 +95,7 @@ export const useXkcdStore = defineStore('xkcd', () => {
   }
 
   return { 
-    getLatestComic, getComic, setSettingsCurrent, settingsChange, updateLocalStorage, markAsSeen,
+    getLatestComic, getComic, setSettingsCurrent, settingsChange, updateLocalStorage, markAsSeen, getSettingsFromLocalstorage,
     day, month, year, title, img, alt, num, numMax, size, filter, settingsCurrent, flag
   }
 })
