@@ -17,8 +17,8 @@ import XkcdMain from '@/components/xkcd/xkcdMain.vue'
 }
 
 #map { 
-  width: 30%;
-  min-width: 250px;
+  width: 281px;
+  flex-shrink: 0;
   background-color: #666;
 }
 

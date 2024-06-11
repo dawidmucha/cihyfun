@@ -1,6 +1,5 @@
 # to do
 
-- [ ] make slider
 - [ ] display comic
 - [ ] mark currently seen comic's tile in `xkcdMap`
 - [ ] make and style "go to comic" form validation
@@ -16,5 +15,6 @@
 -->
 
 # done
+- [x] make slider
 - [x] turn `xkcdMap` from ordered list to flexbox
 - [x] remember settings after a page refresh

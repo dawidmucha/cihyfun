@@ -44,7 +44,7 @@ const isComicShown = (setting, comic) => {
   <div>
     <div id="xkcdMap">
       <XkcdSettings :selectedSizeProp="selectedSize" :selectedFilterProp="selectedFilter" />
-      xkcdMap {{ selectedSize }} {{ selectedFilter }}
+
       <ul id="xkcdMapList">
         <span v-for="comicNumber in store.numMax" :key="comicNumber">
           <li v-if="isComicShown(selectedFilter, ls[comicNumber])"> 
@@ -56,6 +56,7 @@ const isComicShown = (setting, comic) => {
               mapTileMinimal: !!(selectedSize === 'minimal'),
               mapTileSmall: !!(selectedSize === 'small'),
               mapTileLarge: !!(selectedSize === 'large'),
+              mapTileCurrent: comicNumber === store.num
             }">{{ comicNumber }}</div>
           </li>
         </span>
@@ -83,22 +84,23 @@ const isComicShown = (setting, comic) => {
 }
 
 .mapTileLarge {
-  width: 50px;
-  height: 50px;
+  width: 36px;
+  height: 36px;
   
-  margin: 8px;
+  margin: 4px;
 }
 
 .mapTileSmall {
+  font-size: 10px;
   width: 22px;
   height: 22px;
 
-  margin: 2px;
+  margin: 1px;
 }
 
 .mapTileMinimal {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   font-size: 0;
 
   margin: 0px 1px 1px 0px;
@@ -110,5 +112,10 @@ const isComicShown = (setting, comic) => {
 
 .mapTileUnseen {
   background-color: darkred;
+}
+
+.mapTileCurrent {
+  box-sizing: border-box;
+  border: 1px solid yellow;
 }
 </style>
