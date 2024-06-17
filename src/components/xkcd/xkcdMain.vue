@@ -39,8 +39,7 @@ const onBtnPress = (option) => {
 
 <template>
   <main id="xkcdMain">
-    xkcdMain
-    <div> <!-- pinia store debug -->
+    <!-- <div>
       <b>store:</b>
       <ul>
         <li>day: {{ store.day }}</li>
@@ -56,8 +55,13 @@ const onBtnPress = (option) => {
         <li>settingsCurrent: {{ store.settingsCurrent }}</li>
         <li @click="store.markAsSeen(store.num)">mark as seen</li>
       </ul>
+    </div> -->
+
+    <div id="comicImageContainer">
+      <img :src="store.img" />
     </div>
-    <div>
+
+    <div id="comicNavContainer">
       <button @click="onBtnPress(-2)">&lt;&lt;</button>
       <button @click="onBtnPress(-1)">&lt;</button>
       <span style="margin: 10px" />
@@ -73,7 +77,20 @@ const onBtnPress = (option) => {
 
 <style scoped>
 main {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template: 80% 20% / 100%;
+}
+
+#comicImageContainer {
+  height: 100vh;
+  overflow: auto;
+}
+
+#comicNavContainer {
+  background: linear-gradient(
+    0deg,
+    rgba(0,0,0,1) 0%, 
+    rgba(0,0,0,0) 100%
+  );
 }
 </style>
