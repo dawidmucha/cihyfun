@@ -1,6 +1,5 @@
 # to do
 
-- [ ] display comic
 - [ ] mark currently seen comic's tile in `xkcdMap`
 - [ ] make and style "go to comic" form validation
 - [ ] style tiles in `xkcdMap`
@@ -18,3 +17,7 @@
 - [x] make slider
 - [x] turn `xkcdMap` from ordered list to flexbox
 - [x] remember settings after a page refresh
+- [x] display comic
+
+# :(
+- [ ] ~~FIX ISSUE WHERE COMIC SCROLL IS AFFECTED BY NAVBAR BACKGROUND~~ I haven't found the solution for my problemy so i made the gradient oval rather than linear

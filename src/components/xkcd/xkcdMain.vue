@@ -62,15 +62,20 @@ const onBtnPress = (option) => {
     </div>
 
     <div id="comicNavContainer">
-      <button @click="onBtnPress(-2)">&lt;&lt;</button>
-      <button @click="onBtnPress(-1)">&lt;</button>
-      <span style="margin: 10px" />
-      <input type="range" min="1" :max="store.numMax" v-model="store.num" @change="store.getComic(store.num)" /> {{ store.num }}/{{ store.numMax }}
-      <input type="text" v-model="gotoComic" placeholder="comic number" />
-      <button @click="onBtnPress(0)">SEND</button>
-      <span style="margin: 10px" />
-      <button @click="onBtnPress(1)">&gt;</button>
-      <button @click="onBtnPress(2)">&gt;&gt;</button>
+      
+      <div>
+        <button @click="onBtnPress(-2)">&lt;&lt;</button>
+        <button @click="onBtnPress(-1)">&lt;</button>
+        
+        <input type="range" min="1" :max="store.numMax" v-model="store.num" @change="store.getComic(store.num)" /> {{ store.num }}/{{ store.numMax }}
+        <button @click="onBtnPress(1)">&gt;</button>
+        <button @click="onBtnPress(2)">&gt;&gt;</button>
+      </div>
+
+      <div>
+        <input type="text" v-model="gotoComic" placeholder="comic number" />
+        <button @click="onBtnPress(0)">SEND</button>
+      </div>
     </div>
   </main>
 </template>
@@ -81,16 +86,27 @@ main {
   grid-template: 80% 20% / 100%;
 }
 
+button, input[type=text] {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  
+}
+
 #comicImageContainer {
   height: 100vh;
   overflow: auto;
 }
 
 #comicNavContainer {
-  background: linear-gradient(
-    0deg,
-    rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,0) 100%
+  background: radial-gradient(
+    ellipse at 50% 90%,
+    rgba(0,0,0,0.7) 20%, 
+    rgba(0,0,0,0) 70%
   );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>
