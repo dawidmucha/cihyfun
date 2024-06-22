@@ -58,23 +58,33 @@ const onBtnPress = (option) => {
     </div> -->
 
     <div id="comicImageContainer">
-      <img :src="store.img" />
+      <a :href="'https://xkcd.com/'+store.num+'/'" target="_blank"><img id="image" :src="store.img" /></a>
     </div>
 
     <div id="comicNavContainer">
       
-      <div>
+      <div id="comicNavTitle">{{ store.title }}</div>
+
+      <div id="comicNavUpper">
         <button @click="onBtnPress(-2)">&lt;&lt;</button>
         <button @click="onBtnPress(-1)">&lt;</button>
         
-        <input type="range" min="1" :max="store.numMax" v-model="store.num" @change="store.getComic(store.num)" /> {{ store.num }}/{{ store.numMax }}
+        <div id="comicNavUpperCenter">
+          <input id="comicRange" type="range" min="1" :max="store.numMax" v-model="store.num" @change="store.getComic(store.num)" /> 
+          <label for="comicRange">{{ store.num }}/{{ store.numMax }}</label>
+        </div>
+
         <button @click="onBtnPress(1)">&gt;</button>
         <button @click="onBtnPress(2)">&gt;&gt;</button>
       </div>
 
-      <div>
-        <input type="text" v-model="gotoComic" placeholder="comic number" />
-        <button @click="onBtnPress(0)">SEND</button>
+      <div id="comicNavLower">
+        <div>  
+          <input type="text" v-model="gotoComic" placeholder="comic nr" />
+          <button @click="onBtnPress(0)">SEND</button>
+        </div>
+
+        <button @click="store.markAsSeen(store.num)">mark as seen</button>
       </div>
     </div>
   </main>
@@ -89,12 +99,21 @@ main {
 button, input[type=text] {
   padding: 0.5rem;
   font-size: 1.2rem;
-  
+}
+
+label {
+  font-size: 1.3rem;
+  padding-left: 1rem;
+  position: relative;
+  bottom: 3px;
 }
 
 #comicImageContainer {
-  height: 100vh;
+  height: calc(100vh - (100vh - 100%));
   overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 #comicNavContainer {
@@ -104,9 +123,43 @@ button, input[type=text] {
     rgba(0,0,0,0) 70%
   );
 
+  position: absolute;
+  bottom: 0;
+  left: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#comicNavTitle {
+  font-size: 2rem;
+  text-shadow: black 2px 0 7px;
+}
+
+#comicNavUpper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#comicNavUpperCenter {
+  margin: 1rem 2rem;
+}
+
+#comicNavLower {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+input[type=text] {
+  width: 6rem;
+}
+
+#image {
+  margin: 0 auto;
 }
 </style>
