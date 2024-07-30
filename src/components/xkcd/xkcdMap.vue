@@ -57,7 +57,7 @@ const isComicShown = (setting, comic) => {
               mapTileSmall: !!(selectedSize === 'small'),
               mapTileLarge: !!(selectedSize === 'large'),
               mapTileCurrent: comicNumber === store.num
-            }">{{ comicNumber }}</div>
+            }"><div>{{ comicNumber }}</div></div>
           </li>
         </span>
       </ul>
@@ -81,6 +81,13 @@ const isComicShown = (setting, comic) => {
 
 .mapTile {
   color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  filter: drop-shadow(0 0 0.2rem black);
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 .mapTileLarge {
@@ -104,6 +111,8 @@ const isComicShown = (setting, comic) => {
   font-size: 0;
 
   margin: 0px 1px 1px 0px;
+  border: none;
+  filter: none;
 }
 
 .mapTileSeen {
